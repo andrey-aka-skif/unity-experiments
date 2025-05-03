@@ -7,13 +7,36 @@ namespace Assets.Experiment01.VideoPlayerManagement
     [RequireComponent(typeof(VideoPlayer))]
     public class VideoPlayerCustom : MonoBehaviour
     {
+        [SerializeField]
+        private VideoPlayerUI _inlinePlayer;
+
+        [SerializeField]
+        private VideoPlayerUI _fullScreenPlayer;
+
+        private VideoPlayer _player;
+
         public event Action ScreenSizeMinimizing;
         public event Action ScreenSizeExpanding;
 
-        [SerializeField] private VideoPlayerUI _inlinePlayer;
-        [SerializeField] private VideoPlayerUI _fullScreenPlayer;
+        private void Awake() => _player = GetComponent<VideoPlayer>();
 
-        private VideoPlayer _player;
+        private void OnEnable()
+        {
+            _inlinePlayer.PlayPauseClick += OnPlayPauseClick;
+            _inlinePlayer.ScreenSizeChanging += OnScreenSizeExpanding;
+
+            _fullScreenPlayer.PlayPauseClick += OnPlayPauseClick;
+            _fullScreenPlayer.ScreenSizeChanging += OnScreenSizeMinimizing;
+        }
+
+        private void OnDisable()
+        {
+            _inlinePlayer.PlayPauseClick -= OnPlayPauseClick;
+            _inlinePlayer.ScreenSizeChanging -= OnScreenSizeExpanding;
+
+            _fullScreenPlayer.PlayPauseClick -= OnPlayPauseClick;
+            _fullScreenPlayer.ScreenSizeChanging -= OnScreenSizeMinimizing;
+        }
 
         public void SetupClip(VideoClip clip)
         {
@@ -23,25 +46,12 @@ namespace Assets.Experiment01.VideoPlayerManagement
             SetupPlayPauseButtons();
         }
 
-        private void OnEnable()
-        {
-            _player = GetComponent<VideoPlayer>();
-
-            _inlinePlayer.PlayPauseClick += OnPlayPauseClick;
-            _inlinePlayer.ScreenSizeChanging += OnScreenSizeExpanding;
-
-            _fullScreenPlayer.PlayPauseClick += OnPlayPauseClick;
-            _fullScreenPlayer.ScreenSizeChanging += OnScreenSizeMinimizing;
-        }
-
         private void OnScreenSizeMinimizing() => ScreenSizeMinimizing?.Invoke();
 
         private void OnScreenSizeExpanding() => ScreenSizeExpanding?.Invoke();
 
         private void OnPlayPauseClick()
         {
-            Debug.Log("OnPlayPauseClick");
-
             if (_player.isPlaying)
                 _player.Pause();
             else

@@ -7,20 +7,15 @@ namespace Assets.Experiment01.VideoPlayerManagement
     [RequireComponent(typeof(Button))]
     public class ActionButton : MonoBehaviour
     {
-        public event Action Click;
-
         private Button _button;
 
-        private void OnEnable()
-        {
-            _button = GetComponent<Button>();
-            _button.onClick.AddListener(OnClick);
-        }
+        public event Action Click;
 
-        private void OnDisable()
-        {
-            _button.onClick.RemoveListener(OnClick);
-        }
+        private void Awake() => _button = GetComponent<Button>();
+
+        private void OnEnable() => _button.onClick.AddListener(OnClick);
+
+        private void OnDisable() => _button.onClick.RemoveListener(OnClick);
 
         private void OnClick() => Click?.Invoke();
     }

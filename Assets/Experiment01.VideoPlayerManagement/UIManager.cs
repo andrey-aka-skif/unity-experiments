@@ -4,14 +4,25 @@ namespace Assets.Experiment01.VideoPlayerManagement
 {
     public class UIManager : MonoBehaviour
     {
-        [SerializeField] private VideoPlayerCustom _player;
-        [SerializeField] private GameObject _menu;
-        [SerializeField] private GameObject _fullScreenPlayer;
+        [SerializeField]
+        private VideoPlayerCustom _player;
+
+        [SerializeField]
+        private GameObject _menu;
+
+        [SerializeField]
+        private GameObject _fullScreenPlayer;
 
         private void OnEnable()
         {
             _player.ScreenSizeMinimizing += OnScreenSizeMinimizing;
             _player.ScreenSizeExpanding += OnScreenSizeExpanding;
+        }
+
+        private void OnDisable()
+        {
+            _player.ScreenSizeMinimizing -= OnScreenSizeMinimizing;
+            _player.ScreenSizeExpanding -= OnScreenSizeExpanding;
         }
 
         private void OnScreenSizeMinimizing()
