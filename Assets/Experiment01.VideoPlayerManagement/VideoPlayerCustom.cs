@@ -42,6 +42,7 @@ namespace Assets.Experiment01.VideoPlayerManagement
         {
             _player.clip = clip;
             _player.Stop();
+            _player.Prepare();
 
             SetupPlayPauseButtons();
         }
