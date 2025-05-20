@@ -303,7 +303,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 321791368}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 324339010}
+        m_TargetAssemblyTypeName: Assets.Experiment02.HideShowSystem.HideShowSystem,
+          Assembly-CSharp
+        m_MethodName: ShowAll
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &321791368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -728,7 +741,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 922916990}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 324339010}
+        m_TargetAssemblyTypeName: Assets.Experiment02.HideShowSystem.HideShowSystem,
+          Assembly-CSharp
+        m_MethodName: HideSelected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &922916990
 MonoBehaviour:
   m_ObjectHideFlags: 0
