@@ -1,8 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem.EnhancedTouch;
 
-namespace Assets.Experiment03.HierarchicalSelector
+namespace Assets.Experiment04.HierarchicalSelector
 {
     public class PointerDownHandlerSelector : MonoBehaviour, IPointerDownHandler
     {

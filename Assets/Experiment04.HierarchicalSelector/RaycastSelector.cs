@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Assets.Experiment03.HierarchicalSelector
+namespace Assets.Experiment04.HierarchicalSelector
 {
     public class RaycastSelector : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Experiment04.Layouts
+namespace Assets.Experiment05.Layouts
 {
     public class LockCursor : MonoBehaviour
     {

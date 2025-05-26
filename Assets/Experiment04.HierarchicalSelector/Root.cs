@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Experiment03.HierarchicalSelector
+namespace Assets.Experiment04.HierarchicalSelector
 {
     public class Root : MonoBehaviour
     {
