@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace Assets.Experiment07.VideoSlider
 {
     [RequireComponent(typeof(Slider))]
-    public class VideoPlayerSlider : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler
+    public class VideoPlayerSlider : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler
     {
         private Slider _slider;
 
@@ -14,40 +14,43 @@ namespace Assets.Experiment07.VideoSlider
         public event Action EndDrag;
         public event Action<float> ValueChanged;
 
-        private bool _isDragging;
+        private bool _isNavigateNow;
 
-        private void Awake()
-        {
-            _slider = GetComponent<Slider>();
-            _slider.onValueChanged.AddListener(OnChangeValue);
-        }
+        private void Awake() => _slider = GetComponent<Slider>();
 
         public void OnBeginDrag(PointerEventData eventData) => OnBeginDragOrPointerDown();
 
-        public void OnEndDrag(PointerEventData eventData) => OnBeginDragOrPointerDown();
+        public void OnPointerDown(PointerEventData eventData) => OnBeginDragOrPointerDown();
 
-        public void OnPointerDown(PointerEventData eventData) => OnEndDragOrPointerUp();
+        public void OnEndDrag(PointerEventData eventData) => OnEndDragOrPointerUp();
 
         public void OnPointerUp(PointerEventData eventData) => OnEndDragOrPointerUp();
 
+        public void OnDrag(PointerEventData eventData) => ValueChanged?.Invoke(_slider.value);
+
         private void OnBeginDragOrPointerDown()
         {
-            _isDragging = true;
+            if (_isNavigateNow)
+            {
+                return;
+            }
+
+            _isNavigateNow = true;
+
             BeginDrag?.Invoke();
         }
 
         private void OnEndDragOrPointerUp()
         {
-            _isDragging = false;
-            EndDrag?.Invoke();
-        }
-
-        private void OnChangeValue(float value)
-        {
-            if (_isDragging)
+            if (!_isNavigateNow)
             {
-                ValueChanged?.Invoke(value);
+                return;
             }
+
+            _isNavigateNow = false;
+
+            ValueChanged?.Invoke(_slider.value);
+            EndDrag?.Invoke();
         }
 
         public float Value
@@ -55,9 +58,9 @@ namespace Assets.Experiment07.VideoSlider
             get => _slider.value;
             set
             {
-                if (!_isDragging)
+                if (!_isNavigateNow)
                 {
-                    _slider.value = value;
+                    _slider.@value = value;
                 }
             }
         }
