@@ -1,6 +1,6 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/Experiment08.UIToolkits/UI/MenuWindow.uss?fileID=7433441132597879392&amp;guid=93db60b9b98174f4b9adbe0972ad7bea&amp;type=3#MenuWindow" />
-    <engine:VisualElement name="NewGameWindow" class="menuText gameWindow">
+    <Style src="project://database/Assets/Experiment08.UIToolkits/UI/ClickerGameUss.uss?fileID=7433441132597879392&amp;guid=93db60b9b98174f4b9adbe0972ad7bea&amp;type=3#ClickerGameUss" />
+    <engine:VisualElement name="NewGameWindow" class="menuText gameWindow" style="display: flex;">
         <engine:VisualElement name="Panel" class="gamePanel" style="min-width: 200px;">
             <engine:Label text="Новая игра" name="PanelLabel" class="headText" />
             <engine:VisualElement name="BestScoreLine" style="flex-grow: 1; flex-direction: row; justify-content: center;">
